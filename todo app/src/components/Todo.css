@@ -6,6 +6,13 @@
     align-items: center;
     background: rgba(255, 255, 255, 0.1);
   }
+
+  .Left-section {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 10%;
+  }
   
   .Todo-task {
     position: relative;

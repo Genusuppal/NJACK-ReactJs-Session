@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Todo.css'
 
-const Todo = ({todo,remove,update}) => {
+const Todo = ({todo,remove,update,complete}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [task, setTask] = useState(todo.task);
 
@@ -20,6 +20,13 @@ const Todo = ({todo,remove,update}) => {
         e.preventDefault();
         update(todo.id,task);
         toggleFrom();
+    };
+
+    // A function to handle the complete button
+    const handleComplete = (e) => {
+	   e.preventDefault();
+	   complete(todo.id,!todo.complete);
+        setTask(task);
     };
 
     // A function to handle the change in the input field
@@ -44,12 +51,19 @@ const Todo = ({todo,remove,update}) => {
     else {
         result = (
             <div className="Todo">
-                <li
-                    id={todo.id}
-                    className="Todo-task"
-                >
-                    {todo.task}
-                </li>
+			<section className="Left-section">
+				<div className="Todo-buttons">
+					<button onClick={handleComplete} >
+						<i className={`far fa${todo.complete ? "-check" : ""}-circle`} />
+					</button>
+				</div>
+				<li
+					id={todo.id}
+					className={`Todo-task ${todo.complete ? "completed" : ""}`}
+				>
+					{todo.task}
+				</li>
+			 </section>
                 <div className="Todo-buttons">
                     <button onClick={toggleFrom}>
                         <i className="fas fa-pen" />

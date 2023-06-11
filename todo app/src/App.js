@@ -32,6 +32,17 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  // A function to mark todos as complete
+  const complete = (id, completeness) => {
+	const updatedTodos = todos.map((todo) => {
+	  if (todo.id === id) {
+	    return {...todo, complete: completeness}
+	  }
+	  return todo;
+	});
+	setTodos(updatedTodos);
+   }
+
   // This contains all the todos to be rendered
   const todoList = todos.map((todo) => (
     <Todo 
@@ -39,6 +50,7 @@ function App() {
       todo={todo}
       update={update}
       remove={remove}
+	 complete={complete}
       />
   ));
 
